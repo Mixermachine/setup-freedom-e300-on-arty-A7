@@ -158,9 +158,6 @@ If you are using the Olimex ARM-USB-OCD-H JTAG replace the file at
 /home/*user*/.arduino15/packages/sifive/hardware/riscv/1.0.2/freedom-e-sdk/bsp/env/freedom-e300-arty/openocd.cfg  
 (path might change with futur versions) with the version from this repo.
 
-### Patch the Freedom repo
-Do after 
-
 ### Install and setup IntelliJ
 Download the newest version of IntelliJ from https://www.jetbrains.com/idea/download/#section=linux  
 The Community version is sufficient.
