@@ -119,14 +119,16 @@ git clone https://github.com/sifive/freedom.git
 cd freedom
 git submodule update --init --recursive
 ```
-
+ 
+--- Currently not functional. Skip and...   
 I encoutered some problems when I tried to compile this project in IntelliJ.
 You can find my patch for this problem in this repo.  
 Copy the patch file to ~/riscv/freedom/rocket-chip folder and execute
 ```console
 cd ~/riscv/freedom/rocket-chip
 git apply Fix_build_not_possible_in_IntelliJ.patch
-```
+```   
+--- Continue here   
 
 To continue with the normal build of the Freedom repo execute
 
