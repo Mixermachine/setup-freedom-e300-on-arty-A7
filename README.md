@@ -118,17 +118,7 @@ cd ~/riscv
 git clone https://github.com/sifive/freedom.git
 cd freedom
 git submodule update --init --recursive
-```
- 
---- Currently not functional. Skip and...   
-I encoutered some problems when I tried to compile this project in IntelliJ.
-You can find my patch for this problem in this repo.  
-Copy the patch file to ~/riscv/freedom/rocket-chip folder and execute
-```console
-cd ~/riscv/freedom/rocket-chip
-git apply Fix_build_not_possible_in_IntelliJ.patch
-```   
---- Continue here   
+```  
 
 To continue with the normal build of the Freedom repo execute
 
@@ -158,7 +148,7 @@ Change the programmer to SiFive OpenOCD via *Tools -> Programmer*
 If you are using the Olimex ARM-USB-TINY-H JTAG you are fine.  
 If you are using the Olimex ARM-USB-OCD-H JTAG replace the file at
 /home/*user*/.arduino15/packages/sifive/hardware/riscv/1.0.2/freedom-e-sdk/bsp/env/freedom-e300-arty/openocd.cfg  
-(path might change with futur versions) with the version from this repo.
+(path might change in future versions) with the version from this repo.
 
 ### Install and setup IntelliJ
 Download the newest version of IntelliJ from https://www.jetbrains.com/idea/download/#section=linux  
@@ -166,6 +156,14 @@ The Community version is sufficient.
 Unpack it to /home/*user*/IntelliJ/ and run it with ~/IntelliJ/*version_root*/bin/idea.sh
 In the install process select the option to install Scala.
 Import the folder ~/riscv/freedom and select SBT as build tool.
+If asked for the compilation tool, select the sbt shell.
+After the project has been imported, you need to change the Scala cross-compile version, else the project won't build.
+Enter the following into the sbt shell in IntelliJ
+```++2.12.4```
+(Scala version might change in the future, use the version which is listed in the Makefile)
+
+Further information can be found here: https://github.com/sifive/freedom/pull/98
+
 
 ### Troubleshooting
 
