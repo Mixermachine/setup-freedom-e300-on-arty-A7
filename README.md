@@ -4,7 +4,7 @@ Some information was deducted from the
 [offical guide](https://static.dev.sifive.com/SiFive-E310-arty-gettingstarted-v1.0.6.pdf).
 Sadly the official guide the official guide is partially outdated and misses some
 parts that where important for me.
-Also due to a reconstruction of the SiFive homepage some links will lead to a 404 website.
+Also due to a reconstruction of the SiFive homepage some links will lead to 404 pages.
 
 ## What is the Freedom E300 platform
 The E300 platform is based on the SiFive E31 RISC-V Core ip 
@@ -19,7 +19,7 @@ The following RISC-V extension are included:
 ## Hardware/Software requirements
 PC with: (you can outsorce the compile process to a compile server, )
 - Ubuntu/Debian (other OSs are possible, but you are on your own)
-- 8GB of RAM (4GB if you execute the build processes sequentially and don, with IntelliJ and some webbrowser tabs 16GB is helpful)
+- 8GB of RAM (4GB if you execute the build processes sequentially. With IntelliJ and some web browser tabs open 16GB is very recommendable)
 - Dual core CPU (more is definitly better)
 
 ## Setup Steps
@@ -39,9 +39,9 @@ If Java version 8 is reported, you are good to continue.
 If not -> https://www.linuxnix.com/how-to-change-the-java-version-in-linux/
 
 ### Install other dependencies
-The compilation of the Freedom and Freedom E SDK repo require a variaty of dependecies.  
+The compilation of the Freedom and Freedom E SDK repo require a variety of dependencies.  
 Not all are listed in the official repository.  
-Execute to get them all  
+Execute this to get them all  
 ```console
 sudo apt-get install git autoconf automake libmpc-dev libmpfr-dev libgmp-dev gawk bison flex texinfo libtool libusb-1.0-0-dev make g++ pkg-config libexpat1-dev zlib1g-dev device-tree-compiler -y
 ```
@@ -82,8 +82,8 @@ and copy vivado-boards-master/new/board_files/* to Xilinx/Vivado/2018.2/data/boa
 
 ### Install the drivers for the JTAG
 Do after Vivado installation has finished.
-The JTAG needs a driver to work under Linux that is not automatically installed, else
-OpenOCD won't recognize it.
+The JTAG needs a driver to work under Linux, which is not automatically installed
+Without this driver OpenOCD won't recognize the adapter.
 Execute
 ```console
 sudo ~/Xilinx/Vivado/2018.2/data/xicom/cable_drivers/lin64/install_script/install_drivers/install_drivers
@@ -110,9 +110,9 @@ make tools
 ```
 
 ### Checkout and compile Freedom
-The Freedom repo is required if you want to change the code for the base image of a
+The Freedom repo is required if you want to change the Chisel code for the base image of a
 RISC-V. A precompiled file without changes exists.  
-Execute (replace n with the count of cores your machine has)
+Execute 
 ```console
 cd ~/riscv
 git clone https://github.com/sifive/freedom.git
@@ -121,7 +121,7 @@ git submodule update --init --recursive
 ```  
 
 To continue with the normal build of the Freedom repo execute
-
+(replace n with the count of cores your machine has. Reduce n if you run out of memory)
 ``` console
 export MAKEFLAGS="$MAKEFLAGS -j*n*"
 
@@ -139,7 +139,6 @@ make -f Makefile.e300artydevkit mcs
 ### Install Arduino IDE
 Download it from https://www.arduino.cc/en/Main/Software, unpack it to
 for example /home/*user*/Arduino/.  
-If you need some fancy icons on your desktop you can execute ./install.sh  
 Go to *File -> Preferences* and paste http://static.dev.sifive.com/bsp/arduino/package_sifive_index.json
 into the field next to "Additional Boards Manager URLs".
 Change the board to Freedom E300 Arty DevKit via *Tools -> Board*
@@ -154,9 +153,10 @@ If you are using the Olimex ARM-USB-OCD-H JTAG replace the file at
 Download the newest version of IntelliJ from https://www.jetbrains.com/idea/download/#section=linux  
 The Community version is sufficient.
 Unpack it to /home/*user*/IntelliJ/ and run it with ~/IntelliJ/*version_root*/bin/idea.sh
-In the install process select the option to install Scala.
+In the install process select the option to install Scala
+(can also be done later, hit CTRL+A and type sbt. Options to enable sbt will show up).
 Import the folder ~/riscv/freedom and select SBT as build tool.
-If asked for the compilation tool, select the sbt shell.
+If you are asked for the compilation tool, select the sbt shell.
 After the project has been imported, you need to change the Scala cross-compile version, else the project won't build.
 Enter the following into the sbt shell in IntelliJ
 ```++2.12.4```
@@ -168,17 +168,17 @@ Further information can be found here: https://github.com/sifive/freedom/pull/98
 ### Troubleshooting
 
 #### Error unresolved dependency: org.scala-sbt#sbt;1.1.1: not found
-Check your Java version. You need Java 8.  
+Check your Java version. You need Java 8, Java 11 gave me funny errors.
 Also check if the package ca-certificates-java is installed.
 
 #### This is taking so long
-Yes the compile process takes quite some time, especially if you are on a dual core platform, but remember:
-you are compiling a complete CPU and the coresponding GNU C compiler with it.  
+Yes the compile process takes quite some time, especially if you are on a dual core platform but remember:
+you are compiling a complete CPU and the corresponding GNU C compiler with it.  
 If your machine is overheating or takes a very long time to compile, it might be a good
 idea to outsorce the compilation process to a compile server with many cores.
-On my trusty AMD Ryzen 2600 @ 4.1 GHz with six cores it took about 40 minutes to install and compile the everything.
+On my trusty AMD Ryzen 2600 @ 4.1 GHz with six cores it took about 40 minutes to install and compile everything.
 
-#### If have found error in the guide
+#### If have found an error in the guide
 It is possible that I made a mistake while I wrote this guide. If you find one open a issue or if you have some
 time on your hands fork the project and submit a pull request.  
 Thanks in advance.
@@ -187,4 +187,4 @@ Thanks in advance.
 First of all ask Google and DuckDuckGo. Also have a look at the [RISC-V forum](https://riscv.org/forum/).
 If they can't help you, open a issue here. I'm not a total expert in the field but maybe I can help you.  
 The last resort would be the [RISC-V mailing lists](https://riscv.org/mailing-lists/).
- 
+
